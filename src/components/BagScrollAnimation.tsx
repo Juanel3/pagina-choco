@@ -4,9 +4,18 @@ import { useEffect, useRef, useState } from "react";
 import { BAG_ANIMATION_FRAMES } from "@/lib/animation-frames";
 
 const SCROLL_SECTION_VH = 200;
+const FRAME_COUNT = BAG_ANIMATION_FRAMES.length;
+
+function progressToFrameIndex(progress: number): number {
+  return Math.min(
+    FRAME_COUNT - 1,
+    Math.round(progress * (FRAME_COUNT - 1)),
+  );
+}
 
 export function BagScrollAnimation() {
   const sectionRef = useRef<HTMLElement>(null);
+  const rafRef = useRef<number>(0);
   const [frameIndex, setFrameIndex] = useState(0);
 
   useEffect(() => {
@@ -20,32 +29,38 @@ export function BagScrollAnimation() {
     const section = sectionRef.current;
     if (!section) return;
 
-    const updateOnScroll = () => {
+    const update = () => {
       const rect = section.getBoundingClientRect();
       const scrollable = section.offsetHeight - window.innerHeight;
+      const progress =
+        scrollable <= 0
+          ? 0
+          : Math.min(1, Math.max(0, -rect.top / scrollable));
 
-      if (scrollable <= 0) {
-        setFrameIndex(0);
-        return;
-      }
-
-      const progress = Math.min(1, Math.max(0, -rect.top / scrollable));
-      const index = Math.min(
-        BAG_ANIMATION_FRAMES.length - 1,
-        Math.floor(progress * BAG_ANIMATION_FRAMES.length),
-      );
-      setFrameIndex(index);
+      setFrameIndex(progressToFrameIndex(progress));
     };
 
-    updateOnScroll();
-    window.addEventListener("scroll", updateOnScroll, { passive: true });
-    window.addEventListener("resize", updateOnScroll);
+    const scheduleUpdate = () => {
+      if (rafRef.current) return;
+      rafRef.current = requestAnimationFrame(() => {
+        rafRef.current = 0;
+        update();
+      });
+    };
+
+    update();
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
 
     return () => {
-      window.removeEventListener("scroll", updateOnScroll);
-      window.removeEventListener("resize", updateOnScroll);
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, []);
+
+  const imgClassName =
+    "block h-auto w-full object-contain object-center drop-shadow-[0_24px_48px_rgba(0,0,0,0.5)]";
 
   return (
     <section
@@ -63,8 +78,8 @@ export function BagScrollAnimation() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={BAG_ANIMATION_FRAMES[frameIndex]}
-              alt={`Chochomanía, fotograma ${frameIndex + 1} de ${BAG_ANIMATION_FRAMES.length}`}
-              className="block h-auto max-h-[88vh] w-full object-contain object-center drop-shadow-[0_24px_48px_rgba(0,0,0,0.5)]"
+              alt={`Chochomanía, fotograma ${frameIndex + 1} de ${FRAME_COUNT}`}
+              className={`${imgClassName} max-h-[88vh]`}
               draggable={false}
             />
           </div>
@@ -75,8 +90,8 @@ export function BagScrollAnimation() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={BAG_ANIMATION_FRAMES[frameIndex]}
-            alt={`Chochomanía, fotograma ${frameIndex + 1} de ${BAG_ANIMATION_FRAMES.length}`}
-            className="h-auto w-full max-h-[min(85vh,720px)] max-w-4xl object-contain drop-shadow-[0_24px_48px_rgba(0,0,0,0.5)] sm:max-w-5xl"
+            alt={`Chochomanía, fotograma ${frameIndex + 1} de ${FRAME_COUNT}`}
+            className={`${imgClassName} max-h-[min(85vh,720px)] max-w-4xl sm:max-w-5xl`}
             draggable={false}
           />
         </div>
