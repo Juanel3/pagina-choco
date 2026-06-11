@@ -8,6 +8,10 @@ export const HERO_GRADIENT =
 /** Fondo unificado con el catálogo */
 export const SECTION_BG = "#000000";
 
+/** En móvil: título grande, texto completo y repartido en hasta 2 líneas. */
+export const PAGE_TITLE_MOBILE_TWO_LINES =
+  "text-balance max-sm:leading-[1.2] max-sm:min-h-[2.4lh]";
+
 /** Degradado al final del scroll: más rojo abajo */
 export const HERO_GRADIENT_END =
   "radial-gradient(ellipse 110% 75% at 50% 0%, #000000 0%, #1a0505 55%, transparent 80%), radial-gradient(ellipse 140% 100% at 50% 100%, #ef4444 0%, #dc2626 42%, #b91c1c 75%), linear-gradient(180deg, #000000 0%, #450a0a 40%, #991b1b 70%, #dc2626 100%)";

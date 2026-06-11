@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { CartItemRow } from "@/components/CartItemRow";
 import { useOrderList } from "@/components/OrderListProvider";
+import { PAGE_TITLE_MOBILE_TWO_LINES } from "@/lib/theme";
 
 export function OrderListPage() {
   const { items, removeItem } = useOrderList();
@@ -10,12 +11,14 @@ export function OrderListPage() {
   return (
     <section className="px-4 pb-6 pt-2 sm:px-6 sm:pb-8">
       <div className="mx-auto max-w-3xl">
-        <h1 className="text-3xl font-bold tracking-tight text-cream sm:text-4xl">
+        <h1
+          className={`text-3xl font-bold tracking-tight text-cream max-sm:text-3xl sm:text-4xl ${PAGE_TITLE_MOBILE_TWO_LINES}`}
+        >
           Mi carrito
         </h1>
         <p className="mt-3 text-cream/70">
-          Productos que agregaste al carrito. Revísalos antes de contactarnos
-          para tu pedido.
+          Arma tu pedido aquí y envíanoslo por WhatsApp para gestionar tu
+          compra.
         </p>
 
         {items.length === 0 ? (

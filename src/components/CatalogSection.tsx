@@ -14,7 +14,7 @@ import {
   type Product,
   type ProductCategory,
 } from "@/lib/catalog";
-import { SECTION_BG } from "@/lib/theme";
+import { PAGE_TITLE_MOBILE_TWO_LINES, SECTION_BG } from "@/lib/theme";
 import { CatalogFilters } from "@/components/CatalogFilters";
 import { CatalogSearch } from "@/components/CatalogSearch";
 import { ProductCard } from "@/components/ProductCard";
@@ -163,7 +163,9 @@ export function CatalogSection({ variant = "embedded" }: Props) {
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#ff6a00]">
               Catálogo
             </p>
-            <h2 className="mt-2 text-4xl font-bold tracking-tight text-cream sm:text-5xl">
+            <h2
+              className={`mt-2 text-4xl font-bold tracking-tight text-cream max-sm:text-2xl sm:text-5xl ${PAGE_TITLE_MOBILE_TWO_LINES}`}
+            >
               Nuestros productos
             </h2>
             <p className="mt-4 text-cream/75">

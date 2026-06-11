@@ -10,7 +10,7 @@ import {
   getProductById,
   type Product,
 } from "@/lib/catalog";
-import { SECTION_BG } from "@/lib/theme";
+import { PAGE_TITLE_MOBILE_TWO_LINES, SECTION_BG } from "@/lib/theme";
 
 export function BestSellersSection() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -67,7 +67,7 @@ export function BestSellersSection() {
         <div className="mx-auto max-w-2xl text-center">
           <h2
             id="best-sellers-heading"
-            className="font-title text-3xl font-normal uppercase tracking-[0.25em] text-[#ff6a00] sm:text-4xl lg:text-5xl"
+            className={`font-title text-3xl font-normal uppercase tracking-[0.25em] text-[#ff6a00] max-sm:text-xl max-sm:tracking-[0.15em] sm:text-4xl lg:text-5xl ${PAGE_TITLE_MOBILE_TWO_LINES}`}
           >
             Los más vendidos
           </h2>
