@@ -100,6 +100,7 @@ export function BestSellersSection() {
                       product={product}
                       displayName={label}
                       variant="gallery"
+                      oswaldTitle
                       onSelect={setSelectedProduct}
                     />
                   </li>
