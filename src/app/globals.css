@@ -1,26 +1,176 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #faf6f1;
+  --foreground: #2c1810;
+  --accent: #8b4513;
+  --accent-light: #d4a574;
+  --cream: #fff8f0;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-accent: var(--accent);
+  --color-accent-light: var(--accent-light);
+  --color-cream: var(--cream);
+  --font-sans: var(--font-roboto-condensed), system-ui, sans-serif;
+  --font-title: var(--font-handelson), var(--font-roboto-condensed), system-ui, sans-serif;
+  --font-oswald: var(--font-oswald-family), system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-title);
+    letter-spacing: 0.02em;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #000000;
+  color: var(--cream);
+  font-family: var(--font-sans);
+}
+
+@layer components {
+  .chocho-hero-bg {
+    background-color: #000000;
+    background-image:
+      radial-gradient(
+        ellipse 130% 85% at 50% 0%,
+        #000000 0%,
+        #0a0a0a 45%,
+        #1a0505 65%,
+        transparent 82%
+      ),
+      radial-gradient(
+        ellipse 120% 85% at 50% 100%,
+        #ef4444 0%,
+        #dc2626 38%,
+        #991b1b 68%,
+        transparent 88%
+      );
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
+  .chocho-hero-bg-end {
+    background-color: #dc2626;
+    background-image:
+      radial-gradient(
+        ellipse 110% 75% at 50% 0%,
+        #000000 0%,
+        #1a0505 55%,
+        transparent 80%
+      ),
+      radial-gradient(
+        ellipse 140% 100% at 50% 100%,
+        #ef4444 0%,
+        #dc2626 42%,
+        #b91c1c 75%
+      ),
+      linear-gradient(
+        180deg,
+        #000000 0%,
+        #450a0a 40%,
+        #991b1b 70%,
+        #dc2626 100%
+      );
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
+  .chocho-hero-flow {
+    background-color: #000000;
+    background-image:
+      radial-gradient(
+        ellipse 152% 63% at 50% 66%,
+        #ef4444 0%,
+        #dc2626 24%,
+        rgba(185, 28, 28, 0.48) 42%,
+        rgba(69, 10, 10, 0.22) 54%,
+        transparent 71%
+      ),
+      radial-gradient(
+        ellipse 140% 52% at 50% 20%,
+        #dc2626 0%,
+        rgba(220, 38, 38, 0.55) 28%,
+        rgba(69, 10, 10, 0.25) 46%,
+        transparent 66%
+      ),
+      linear-gradient(
+        180deg,
+        #dc2626 0%,
+        #991b1b 12%,
+        #1a0505 22%,
+        #000000 42%,
+        #0a0000 58%,
+        #000000 74%,
+        #000000 87%,
+        #000000 100%
+      );
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
+  @media (max-width: 639px) {
+    .chocho-hero-flow {
+      background-color: #000000;
+      background-image: radial-gradient(
+        ellipse 185% 92% at 50% 50%,
+        #ef4444 0%,
+        #dc2626 18%,
+        #991b1b 32%,
+        #1a0505 48%,
+        #000000 68%,
+        #000000 100%
+      );
+    }
+  }
+
+  .chocho-catalog-hero {
+    background-color: #000000;
+    background-image:
+      radial-gradient(
+        ellipse 145% 55% at 50% 10%,
+        #dc2626 0%,
+        rgba(220, 38, 38, 0.55) 30%,
+        transparent 68%
+      ),
+      radial-gradient(
+        ellipse 160% 80% at 50% 44%,
+        #ef4444 0%,
+        #dc2626 26%,
+        rgba(185, 28, 28, 0.42) 40%,
+        rgba(69, 10, 10, 0.14) 52%,
+        transparent 68%
+      ),
+      radial-gradient(
+        ellipse 185% 115% at 50% 100%,
+        #000000 0%,
+        #000000 62%,
+        rgba(0, 0, 0, 0.98) 72%,
+        rgba(0, 0, 0, 0.9) 80%,
+        transparent 92%
+      );
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
+  .chocho-hero-blur-wrap {
+    isolation: isolate;
+  }
+
+  .chocho-hero-blur-layer {
+    inset: -15%;
+    transform: scale(1.08);
+    filter: blur(56px);
+  }
+
+  .chocho-hero-blur-veil {
+    background: transparent;
+    backdrop-filter: blur(6px);
+  }
 }
