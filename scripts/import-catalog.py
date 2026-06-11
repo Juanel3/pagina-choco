@@ -83,7 +83,8 @@ def load_category_photos(folder_name: str) -> dict[str, str]:
         return photos
 
     for image in photo_dir.glob("*.png"):
-        photos[normalize_match_key(image.stem)] = image.name
+        filename = unicodedata.normalize("NFC", image.name)
+        photos[normalize_match_key(image.stem)] = filename
 
     return photos
 

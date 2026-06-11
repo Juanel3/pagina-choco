@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { BAG_ANIMATION_FRAMES } from "@/lib/animation-frames";
 
-const SCROLL_SECTION_VH = 320;
+const SCROLL_SECTION_VH = 200;
 
 export function BagScrollAnimation() {
   const sectionRef = useRef<HTMLElement>(null);

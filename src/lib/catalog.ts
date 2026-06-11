@@ -17,6 +17,7 @@ export const FAT_BURNER_PHOTOS_DIR = "/QUEMADORES DE GRASA FOTOS PRODUCTOS";
 /** Codifica rutas de public/ con espacios o caracteres especiales. */
 export function encodePublicPath(path: string): string {
   return path
+    .normalize("NFC")
     .split("/")
     .map((segment, index) => (index === 0 ? segment : encodeURIComponent(segment)))
     .join("/");
@@ -161,6 +162,5 @@ export function formatProductPrice(price: number | null): string {
 
 export function formatFlavorCount(count: number) {
   if (count === 0) return "Sin sabores listados";
-  if (count === 1) return "1 sabor disponible";
-  return `${count} sabores disponibles`;
+  return `Elige entre ${count} sabores`;
 }
