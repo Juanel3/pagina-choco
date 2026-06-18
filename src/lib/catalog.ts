@@ -164,3 +164,7 @@ export function formatFlavorCount(count: number) {
   if (count === 0) return "Sin sabores listados";
   return `Elige entre ${count} sabores`;
 }
+
+/** Tipografía de títulos de producto (card y detalle). */
+export const PRODUCT_TITLE_TYPOGRAPHY =
+  "font-oswald font-bold leading-tight tracking-wide";

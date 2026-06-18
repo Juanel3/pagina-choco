@@ -4,6 +4,7 @@ import {
   formatFlavorCount,
   formatProductPrice,
   isProductAvailable,
+  PRODUCT_TITLE_TYPOGRAPHY,
   type Product,
 } from "@/lib/catalog";
 import { ProductImage } from "@/components/ProductImage";
@@ -43,12 +44,14 @@ export function ProductCard({
 
       <div className={`flex min-h-0 flex-1 flex-col ${isGallery ? "p-2" : "p-3"}`}>
         <h3
-          className={`line-clamp-2 font-bold leading-tight text-neutral-900 ${
+          className={`line-clamp-2 text-neutral-900 ${
             oswaldTitle
-              ? "font-oswald min-h-[2.5em] text-[0.7rem] tracking-wide sm:text-xs"
-              : isGallery
-                ? "min-h-[2.25em] text-[0.6rem] sm:text-[0.65rem]"
-                : "min-h-[2.5em] text-[0.7rem] sm:text-xs"
+              ? `${PRODUCT_TITLE_TYPOGRAPHY} min-h-[2.5em] text-[0.7rem] sm:text-xs`
+              : `font-bold leading-tight ${
+                  isGallery
+                    ? "min-h-[2.25em] text-[0.6rem] sm:text-[0.65rem]"
+                    : "min-h-[2.5em] text-[0.7rem] sm:text-xs"
+                }`
           }`}
         >
           {displayName ?? product.name}

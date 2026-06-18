@@ -6,6 +6,7 @@ import {
   formatFlavorCount,
   formatProductPrice,
   isProductAvailable,
+  PRODUCT_TITLE_TYPOGRAPHY,
   type Product,
 } from "@/lib/catalog";
 import { useOrderList } from "@/components/OrderListProvider";
@@ -127,7 +128,7 @@ export function ProductDetailModal({ product, onClose }: Props) {
           <div className="min-h-0 flex-1 overflow-y-auto p-6 pb-4 sm:p-8 sm:pb-4">
             <h2
               id="product-detail-title"
-              className="pr-10 text-2xl font-bold leading-snug text-neutral-900 sm:text-3xl"
+              className={`pr-10 text-2xl text-neutral-900 sm:text-3xl ${PRODUCT_TITLE_TYPOGRAPHY}`}
             >
               {product.name}
             </h2>

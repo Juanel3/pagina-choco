@@ -49,7 +49,7 @@ export function CartSummaryBar({
               className="inline-flex h-10 items-center justify-center gap-2 rounded-full bg-[#25D366] px-5 text-sm font-medium text-white transition-colors hover:bg-[#20BA5A]"
             >
               <WhatsAppIcon className="h-4 w-4" />
-              Contactar a un asesor
+              Finalizar pedido
             </button>
           </div>
     </div>
